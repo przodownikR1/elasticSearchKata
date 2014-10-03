@@ -1,0 +1,111 @@
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-milestone" }
+        mavenLocal()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.7.RELEASE")
+        //1.0.0.RC4
+        //1.0.1.RELEASE
+    }
+}
+
+apply plugin: 'java'
+apply plugin: "groovy"
+apply plugin: 'eclipse'
+apply plugin: 'build-dashboard'
+apply plugin: 'codenarc'
+apply from: './properties.gradle'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+jar {
+    baseName = 'elasticSearch-poc'
+    version = '0.1.0'
+}
+
+war {
+    baseName = 'elasticSearch-poc'
+    version =  '0.1.0'
+}
+
+sourceSets {
+    intTest
+   
+    main {
+        java { srcDir 'src/main/java' }
+        resources { srcDir 'src/main/resources' }
+    }
+    test {
+        java { srcDir 'src/test/java' }
+        resources { srcDir 'src/test/resources' }
+    }
+}
+
+
+repositories {
+    mavenCentral()
+    maven { url "http://repo.spring.io/libs-snapshot" }
+    maven { url "http://repo.codahale.com/" }
+}
+
+/*configurations {
+ providedRuntime
+ }*/
+
+dependencies {
+
+ 
+    compile ("org.codehaus.groovy:groovy:${groovyVersion}")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-aop")
+    // compile("org.springframework.data:spring-data-rest-webmvc:${springDataRestWebmvcVersion}")
+    compile ("org.springframework.hateoas:spring-hateoas:0.16.0.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-logging")
+    compile("org.springframework.boot:spring-boot-starter-data-elasticsearch")
+    
+    compile ("org.springframework:spring-core:${springVersion}")
+    compile ("org.springframework:spring-beans:${springVersion}")
+    compile ("org.springframework:spring-context:${springVersion}")
+    compile ("org.springframework:spring-aop:${springVersion}")
+
+    compile ("org.springframework:spring-aspects:${springVersion}")
+    compile ("org.springframework:spring-webmvc:${springVersion}")
+
+    compile ("com.sun.jersey:jersey-bundle:1.18")
+
+    compile("org.projectlombok:lombok:${lombokVersion}")
+    compile("com.google.guava:guava:${guavaVersion}")
+    compile("org.apache.httpcomponents:httpclient:${httpClientVersion}")
+    compile("org.apache.httpcomponents:fluent-hc:${httpClientVersion}")
+
+    compile ("com.jayway.restassured:rest-assured:2.3.3")
+    compile ("com.jayway.jsonpath:json-path:0.9.1")
+    
+    
+    compile("com.google.code.gson:gson:${gsonVersion}")
+    compile("org.yaml:snakeyaml:{snakeYamlVersion}")
+    //   / providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+
+    runtime("org.hsqldb:hsqldb:${hsqldbVersion}")
+    testCompile("org.hamcrest:hamcrest-all:$hamcrestVersion")
+    compile("org.mockito:mockito-all:$mockitoVersion")
+    testCompile("junit:junit:$junitVersion")
+    testCompile("org.easytesting:fest-assert:${festAssertVersion}")
+    testCompile("com.googlecode.catch-exception:catch-exception:1.2.0")
+    testCompile ("org.springframework:spring-test:${springVersion}")
+    testCompile ("org.spockframework:spock-core:0.7-groovy-2.0")
+    testCompile("pl.pragmatists:JUnitParams:1.0.3")
+
+
+}
+uploadArchives {
+    repositories {
+        flatDir { dirs 'repos' }
+    }
+}
+
+task wrapper(type: Wrapper) { gradleVersion = '2.1' }

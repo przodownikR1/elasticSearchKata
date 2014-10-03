@@ -1,0 +1,31 @@
+ext {
+     junitVersion = "4.11"
+      hamcrestVersion = "1.3"
+      mockitoVersion  = "1.9.5"
+      catchExceptionVersion = "1.2.0"
+      festAssertVersion = "1.4"
+      
+      slf4jVersion = "1.7.7"
+      logbackVersion = "1.1.2"
+      
+      springVersion = "4.1.0.RELEASE"
+      springDataRestWebmvcVersion = "2.2.0.RELEASE"
+      springDataJPAVersion = "1.7.0.RELEASE"
+      javaxValidationVersion = "1.1.0.Final"
+      
+      groovyVersion = "2.3.6"
+      jodaTimeVersion ="2.3"
+      jacksonMapperVersion = "1.9.13"
+      snakeYamlVersion = "1.13"
+      lombokVersion = "1.12.4"
+      guavaVersion = "16.0.1"
+      gsonVersion="2.2.4"       
+      aspectJVersion = "1.7.4"
+      javaVersion = "1.8"
+      codahale="3.0.2"
+      jmhVersion = "0.5.5" 
+      springSecurityOauth2Version="1.0.5.RELEASE"
+      httpClientVersion="4.3.5"
+      hsqldbVersion = "2.3.1"
+      queryDslVersion ="3.4.3"
+}
