@@ -1,6 +1,7 @@
 package pl.java.scalatech.test;
 
 import static org.elasticsearch.index.query.QueryBuilders.queryString;
+import static org.fest.assertions.Assertions.assertThat;
 
 import java.math.BigDecimal;
 
@@ -59,7 +60,8 @@ public class ElasticSearchTest {
     @Test
     public void shouldfindByLogin(){
         Page<User> pageUser = findByLogin("krzych");
-        Assertions.assertThat(pageUser).hasSize(1).contains(new User("ostroski", "krzych", new BigDecimal(2000)));
+        
+        assertThat(pageUser).hasSize(1).contains(new User("ostroski", "krzych", new BigDecimal(2000)));
         
     }
 }
