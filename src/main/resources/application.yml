@@ -12,7 +12,7 @@ info:
          
 spring:
          profiles :
-                   active: dev
+                   active: remote
                            
 simple :
          name : przodownik

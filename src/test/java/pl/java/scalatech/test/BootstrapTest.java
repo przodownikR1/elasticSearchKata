@@ -13,7 +13,7 @@ import pl.java.scalatech.config.AppConfig;
 import pl.java.scalatech.config.ServiceConfig;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { AppConfig.class,ServiceConfig.class})
-@ActiveProfiles(profiles="dev,cache")
+@ActiveProfiles(profiles="remote")
 @Slf4j
 @WebAppConfiguration
 public class BootstrapTest {

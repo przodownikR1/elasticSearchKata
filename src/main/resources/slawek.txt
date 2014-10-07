@@ -1,3 +1,0 @@
-borowiec=przodownik
-bak=kalina
-r1=yamaha r1
