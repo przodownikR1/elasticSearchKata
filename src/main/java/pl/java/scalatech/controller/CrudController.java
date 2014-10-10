@@ -60,7 +60,7 @@ public abstract class CrudController<T extends PKNature<K>, K extends Serializab
         return new ResponseEntity<>(assembler.toResource(items), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id:\\d+}", method = RequestMethod.GET)
     public ResponseEntity<?> getResourceById(@PathVariable("id") K id, @MatrixVariable Optional<Map<String, String>> maps) {
         log.info("+++  getResourceById {}", id);
         T item = service.findById(id);

@@ -27,4 +27,9 @@ public class UserServiceImpl extends PaginationAbstactService<User, Long> implem
         this.userRepository = userRepository;
     }
 
+    @Override
+    public User findByLogin(String login) {
+        return userRepository.findUserByLogin(login);
+    }
+
 }

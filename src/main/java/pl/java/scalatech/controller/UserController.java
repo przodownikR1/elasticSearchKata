@@ -2,6 +2,8 @@ package pl.java.scalatech.controller;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +27,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import pl.java.scalatech.assembler.UserAssembler;
 import pl.java.scalatech.assembler.UserResource;
 import pl.java.scalatech.domain.User;
-import pl.java.scalatech.rest.ApiError;
+import pl.java.scalatech.exception.BadRequestException;
+import pl.java.scalatech.rest.dto.ApiError;
 import pl.java.scalatech.service.UserService;
 
 @RestController
@@ -47,10 +51,19 @@ public class UserController extends CrudController<User,Long> {
         this.userAssembler = new UserAssembler(this.getClass(), UserResource.class);
     }
 
+    @RequestMapping(value = "/login/{login}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserByLogin(@PathVariable("login")String login,Locale locale){
+        User user = userService.findByLogin(login);
+        if (user == null) { return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND.value(), messageSource.getMessage("not_exists",
+                new Object[] { login }, locale)), HttpStatus.NOT_FOUND); }
+        UserResource resource = userAssembler.toResource(user);
+        return new ResponseEntity<>(resource, HttpStatus.OK);
+    }
+    
     @RequestMapping(value = "/hateoas/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getUserById(@PathVariable("id") Long id, Locale locale) {
         User user = userService.findById(id);
-        if (user == null) { return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND.value(), messageSource.getMessage("entity not exists",
+        if (user == null) { return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND.value(), messageSource.getMessage("not_exists",
                 new Object[] { id }, locale)), HttpStatus.NOT_FOUND); }
         UserResource resource = userAssembler.toResource(user);
         return new ResponseEntity<>(resource, HttpStatus.OK);
@@ -58,7 +71,7 @@ public class UserController extends CrudController<User,Long> {
 
     @Override
     protected ResponseEntity<?> getRightResponseEntity(User t) {
-        if (t == null) { return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND.value(), messageSource.getMessage("not exists", new Object[] { t },
+        if (t == null) { return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND.value(), messageSource.getMessage("not_exists", new Object[] { t },
                 locale)), HttpStatus.NOT_FOUND); }
         return new ResponseEntity<>(t, HttpStatus.OK);
     }
@@ -81,4 +94,9 @@ public class UserController extends CrudController<User,Long> {
         return user;
     }
 
+    @ExceptionHandler(value = { IllegalArgumentException.class, IllegalStateException.class, BadRequestException.class, NullPointerException.class })
+    public void handler(HttpServletRequest req, RuntimeException exception){
+        System.err.println("======================  " + exception);
+        
+    }
 }

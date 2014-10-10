@@ -9,5 +9,7 @@ import pl.java.scalatech.service.common.PaginationService;
  *         Creating time : 17 wrz 2014 09:49:20
  */
 public interface UserService extends PaginationService<User,Long> {
+    
+    User findByLogin(String login);
 
 }

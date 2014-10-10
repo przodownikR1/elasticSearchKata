@@ -32,7 +32,7 @@ import pl.java.scalatech.service.UserService;
 @EnableAsync
 @Slf4j
 public class ElasticSettingApp extends SpringBootServletInitializer {
-    private static final String DEV = "dev";
+    private static final String DEV = "remote";
 
     @Autowired
     private UserService userService;

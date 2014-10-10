@@ -8,6 +8,9 @@ import lombok.ToString;
 import lombok.experimental.Builder;
 
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldIndex;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 /**
  * @author Sławomir Borowiec 
@@ -22,7 +25,9 @@ import org.springframework.data.elasticsearch.annotations.Document;
 @Builder
 public class User extends PKEntity<Long>{
     private static final long serialVersionUID = -6567709458397827407L;
+    @Field(type = FieldType.String,index = FieldIndex.not_analyzed)
     private String name;
+    @Field(type = FieldType.String,index = FieldIndex.not_analyzed)
     private String login;
     private BigDecimal salary;
 
