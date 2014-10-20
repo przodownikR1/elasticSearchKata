@@ -3,7 +3,6 @@ package pl.java.scalatech.assembler;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
-import java.math.BigDecimal;
 import java.util.Locale;
 
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;

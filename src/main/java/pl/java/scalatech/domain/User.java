@@ -12,12 +12,7 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldIndex;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-/**
- * @author Sławomir Borowiec 
- * Module name : bootSetting
- * Creating time :  17 wrz 2014 09:49:34
- 
- */
+
 @Data
 @NoArgsConstructor
 @Document(indexName = "user")

@@ -50,6 +50,7 @@ public class ElasticSearchTest {
 
     @Before
     public void init() {
+        userRepository.deleteAll();
         userRepository.save(User.builder().login("malysz").name("adam").salary(new BigDecimal(306)).build());
         log.info(" {}", userRepository.save(User.builder().login("borowiec").name("przodownik").salary(new BigDecimal(100)).build()));
         log.info(" {}", userRepository.save(User.builder().login("borowiec").name("aga").salary(new BigDecimal(10)).build()));

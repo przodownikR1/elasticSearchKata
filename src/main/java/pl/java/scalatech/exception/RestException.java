@@ -1,10 +1,6 @@
 package pl.java.scalatech.exception;
 
-/**
- * @author Sławomir Borowiec
- *         Module name : poc
- *         Creating time : 23 kwi 2014 11:52:35
- */
+
 
 public class RestException extends RuntimeException {
 

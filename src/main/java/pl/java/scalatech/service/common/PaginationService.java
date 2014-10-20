@@ -5,7 +5,6 @@
 package pl.java.scalatech.service.common;
 
 import java.io.Serializable;
-import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

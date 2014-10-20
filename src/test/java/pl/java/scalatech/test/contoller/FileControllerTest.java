@@ -26,6 +26,7 @@ import com.jayway.restassured.path.json.JsonPath;
 
 import pl.java.scalatech.config.AppConfig;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { AppConfig.class })
 @WebAppConfiguration
@@ -33,8 +34,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 public class FileControllerTest {
 
     private MockMvc mockMvc;
-
-
 
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -47,26 +46,22 @@ public class FileControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
-
-
     @Test
     public void shouldHealthControllerWorks() throws Exception {
         mockMvc.perform(get("/api/appContext")).andExpect(content().contentType("text/plain;charset=ISO-8859-1")).andExpect(status().isOk());
     }
+
     @Test
     public void shouldCarWork() throws Exception {
         this.mockMvc.perform(get("/api/car/name/{name}", "opel")).andDo(print()).andExpect(status().isOk());
     }
 
-  
     @Test
     public void shouldCarWork2() throws Exception {
-        this.mockMvc.perform(get("/api/car/name/{name}", "opel").accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$.age").value("23"))
-        .andExpect(jsonPath("$.name").value("opel"));
+        this.mockMvc.perform(get("/api/car/name/{name}", "opel").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andExpect(jsonPath("$.age").value("23")).andExpect(jsonPath("$.name").value("opel"));
     }
-    
+
     @Test
     public void shouldCarWork3() throws Exception {
         this.mockMvc.perform(get("/api/car/name/{name}", "opel")).andExpect(content().contentType("application/json"));
@@ -75,6 +70,5 @@ public class FileControllerTest {
         assertThat(jsonPath.getString("name"), equalTo("opel"));
         assertThat(jsonPath.getString("age"), equalTo("23"));
     }
-    
-    
+
 }

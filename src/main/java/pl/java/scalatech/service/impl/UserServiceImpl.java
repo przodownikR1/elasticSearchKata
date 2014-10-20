@@ -9,11 +9,7 @@ import pl.java.scalatech.repository.UserRepository;
 import pl.java.scalatech.service.UserService;
 import pl.java.scalatech.service.common.impl.PaginationAbstactService;
 
-/**
- * @author Sławomir Borowiec
- *         Module name : bootSetting
- *         Creating time : 17 wrz 2014 09:49:17
- */
+
 @Service
 @Transactional(readOnly = true)
 public class UserServiceImpl extends PaginationAbstactService<User, Long> implements UserService {
@@ -30,6 +26,12 @@ public class UserServiceImpl extends PaginationAbstactService<User, Long> implem
     @Override
     public User findByLogin(String login) {
         return userRepository.findUserByLogin(login);
+    }
+
+    @Override
+    public void deleteAll() {
+       userRepository.deleteAll();
+        
     }
 
 }

@@ -22,11 +22,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-/**
- * @author Sławomir Borowiec
- *         Module name : bootSetting
- *         Creating time : 17 wrz 2014 09:50:04
- */
+
 @Configuration
 @ComponentScan(basePackages = { "pl.java.scalatech.controller", "pl.java.scalatech.rest" }, useDefaultFilters = false, includeFilters = {
         @Filter(RestController.class), @Filter(Component.class), @Filter(ControllerAdvice.class) })

@@ -96,7 +96,7 @@ public class UserController extends CrudController<User,Long> {
 
     @ExceptionHandler(value = { IllegalArgumentException.class, IllegalStateException.class, BadRequestException.class, NullPointerException.class })
     public void handler(HttpServletRequest req, RuntimeException exception){
-        System.err.println("======================  " + exception);
+     log.error("controller handler", exception);
         
     }
 }
