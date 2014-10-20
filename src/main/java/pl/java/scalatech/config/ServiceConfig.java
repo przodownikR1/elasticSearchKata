@@ -11,7 +11,7 @@ import pl.java.scalatech.config.elastic.ElasticSearchConfig;
 import pl.java.scalatech.config.elastic.ElasticSearchRemoteConfig;
 @Configurable
 @ComponentScan(basePackages="pl.java.scalatech.service",useDefaultFilters=false,includeFilters={@Filter(Service.class)})
-@PropertySource(value={"server.properties","elasticSearch.properties"},ignoreResourceNotFound=false)
+@PropertySource(value={"classpath:elasticSearch.properties"},ignoreResourceNotFound=false)
 @Import(value={PropertiesLoader.class,ElasticSearchConfig.class,ElasticSearchRemoteConfig.class})
 public class ServiceConfig {
 

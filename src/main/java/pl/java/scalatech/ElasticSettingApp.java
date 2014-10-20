@@ -22,11 +22,7 @@ import pl.java.scalatech.config.AppConfig;
 import pl.java.scalatech.domain.User;
 import pl.java.scalatech.service.UserService;
 
-/**
- * @author Sławomir Borowiec
- *         Module name : bootSetting
- *         Creating time : 17 wrz 2014 09:49:25
- */
+
 @Configuration
 @EnableAutoConfiguration
 @EnableAsync
@@ -40,6 +36,7 @@ public class ElasticSettingApp extends SpringBootServletInitializer {
     @Bean
     InitializingBean populateData(final UserService userService) {
         return () -> {
+            userService.deleteAll();
             userService.persist(User.builder().login("malysz").name("adam").salary(new BigDecimal(306)).build());
             log.info(" {}", userService.persist(User.builder().login("borowiec").name("przodownik").salary(new BigDecimal(100)).build()));
             log.info(" {}", userService.persist(User.builder().login("borowiec").name("aga").salary(new BigDecimal(10)).build()));

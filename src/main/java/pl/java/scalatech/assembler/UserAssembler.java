@@ -21,11 +21,12 @@ public class UserAssembler extends ResourceAssemblerSupport<User, UserResource> 
     public UserResource toResource(User entity) {
         UserResource ur = new UserResource();
         ur.setName(entity.getName());
+        ur.setLogin(entity.getLogin());
         ur.setUserId(entity.getId());
         ur.setSalary(entity.getSalary());
       
         ur.add(linkTo(UserController.class).withRel("all"));
-        ur.add(linkTo(methodOn(UserController.class).getUserById(entity.getId(), Locale.getDefault())).withSelfRel());
+        ur.add(linkTo(methodOn(UserController.class).getUserByLogin(ur.getLogin(), Locale.getDefault())).withSelfRel());
         //ur.add(linkTo(methodOn(UserController.class).create(new User("test", "ln", new BigDecimal(234)))).withRel("createUser"));
         return ur;
 

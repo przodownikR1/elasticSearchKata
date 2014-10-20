@@ -14,6 +14,8 @@ public class UserResource extends  ResourceSupport{
     private String name;
     @Getter @Setter
     private BigDecimal salary;
+    @Getter @Setter
+    private String login;
 
    
     

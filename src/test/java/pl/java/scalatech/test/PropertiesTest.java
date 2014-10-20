@@ -31,12 +31,12 @@ public class PropertiesTest {
     @Test
     public void shouldPropertiesRead() {
         log.info("!!! port : {}", app);
-        assertThat(es).isEqualTo("localhost:9300,localhost:9200");
+        assertThat(es).isEqualTo("localhost:9300");
     }
 
     @Test
     public void shouldPropertiesEnvRead() {
-        assertThat(env.getProperty("es")).isEqualTo("localhost:9300,localhost:9200");
-        assertThat(es).isEqualTo("localhost:9300,localhost:9200");
+        assertThat(env.getProperty("es")).isEqualTo("localhost:9300");
+        assertThat(es).isEqualTo("localhost:9300");
     }
 }
