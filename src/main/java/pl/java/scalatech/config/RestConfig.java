@@ -22,7 +22,6 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-
 @Configuration
 @ComponentScan(basePackages = { "pl.java.scalatech.controller", "pl.java.scalatech.rest" }, useDefaultFilters = false, includeFilters = {
         @Filter(RestController.class), @Filter(Component.class), @Filter(ControllerAdvice.class) })
@@ -64,7 +63,7 @@ public class RestConfig extends WebMvcConfigurationSupport {
     public @Bean RestTemplate restTemplate() {
         return new RestTemplate();
     }
-    
+
     @Override
     @Bean
     public RequestMappingHandlerMapping requestMappingHandlerMapping() {
@@ -73,8 +72,4 @@ public class RestConfig extends WebMvcConfigurationSupport {
         return hm;
     }
 
-   /* @Override
-    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-        configurer.defaultContentType(MediaType.APPLICATION_JSON);
-    }*/
 }
