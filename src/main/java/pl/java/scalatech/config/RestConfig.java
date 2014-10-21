@@ -1,5 +1,6 @@
 package pl.java.scalatech.config;
 
+import java.io.IOException;
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+
+import com.google.common.io.ByteStreams;
 
 @Configuration
 @ComponentScan(basePackages = { "pl.java.scalatech.controller", "pl.java.scalatech.rest" }, useDefaultFilters = false, includeFilters = {
@@ -71,5 +74,11 @@ public class RestConfig extends WebMvcConfigurationSupport {
         hm.setRemoveSemicolonContent(false);
         return hm;
     }
+    
+    
+    
+    private String resource(String location) throws IOException {
+        return new String(ByteStreams.toByteArray(RestConfig.class.getResourceAsStream(location)));
+        }
 
 }
